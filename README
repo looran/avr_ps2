@@ -1,0 +1,39 @@
+avr_ps2 - C library for PS2 input on AVR
+
+PS2 keyboard clock and data wires should be connected to the uc.
+Clock will trigger PCINT interrupts, and the library then reads pressed key from the data wire. ASCII code of the pressed key will be pushed in a buffer, that can be red from outside of interrupt vector.
+
+avr_ps2 supports different keymaps, configured at compile time by including the corresponding keymap header file, for example for us keymap:
+#include "ps2_keymap_en.h"
+
+Pins and other settings can be configured in a conf.h file in your source files.
+Default is PORTC, pin PC0 for PS2 clock and pin PC1 for PS2 data.
+
+Tested on atmega328p.
+
+See example.c for an example of use.
+
+
+=== References ===
+
+= Tuto
+2011, Vladimir Milosavljevic http://www.electronics-base.com/projects/complete-projects/108-avr-ps2-keyboard-key-readout
+http://extremeelectronics.co.in/avr-tutorials/ps2-keyboard-interface-with-avr-mcu/
+http://playground.arduino.cc/Main/PS2Keyboard
+http://retired.beyondlogic.org/keyboard/keybrd.htm
+    assembly
+https://www.avrfreaks.net/forum/ps2-lcd-interfacing
+    interesting post from Simonetta
+
+= Libs
+https://github.com/PaulStoffregen/PS2Keyboard
+http://www.technoblogy.com/list?1H0V
+https://github.com/techpaul/PS2KeyAdvanced
+Watch PS/2 keyboard signals to add extra keyboard noise with relays (AVR / Arduino)
+        https://gist.github.com/stecman/89ba440e97c8bafe8d1bb0ebe02025dc
+https://github.com/das-labor/legacy/tree/master/microcontroller/src-atmel/playground/gauselmann
+        hard to use
+
+= Usb - ps2 pinout
+http://pinouts.ru/InputCables/usb_ps2_mouse_pinout.shtml
+	Some USB keyboard firmwares support PS2 fallback, in use with a USB-PS2 adapter (usually passive, just wires)
